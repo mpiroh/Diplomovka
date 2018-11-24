@@ -83,7 +83,13 @@ public class IDPDA {
             }
         }
 
-        return true;
+        Automaton automaton = getAutomatonById(state[0]);
+        int[][] transitions = automaton.getTransitions();
+        if (transitions[state[1]][0] == Automaton.FINAL_STATE && automaton.getId() == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Automaton getAutomatonById(int id) {

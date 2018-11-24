@@ -23,7 +23,7 @@ public class Main {
         List<String> toList3 = new ArrayList<>();
         List<String> toList4 = new ArrayList<>();
         List<String> toList5 = new ArrayList<>();
-        toList1.add("♥A♥♥B♥");
+        toList1.add("♥A♥♥B♥♥C♥w");
         map.put("♥S♥", toList1);
         System.out.println(map);
         
@@ -31,18 +31,19 @@ public class Main {
         map.put("♥A♥", toList2);
         System.out.println(map);
         
-        toList3.add("bb");
+        toList3.add("b");
         map.put("♥B♥", toList3);
+        System.out.println(map);
         
-        //toList4.add("d");
-        //map.put("♥D♥", toList4);
+        toList4.add("c");
+        map.put("♥C♥", toList4);
+        System.out.println(map);
         
         Grammar grammar = new Grammar();
         grammar.setRules(map);
         
         Convertor convertor = new Convertor();
         IDPDA idpda = convertor.toIDPDA(grammar);
-        System.out.println(idpda.simulate("abb"));
-        
+        System.out.println(idpda.simulate("abcw"));
     }
 }
