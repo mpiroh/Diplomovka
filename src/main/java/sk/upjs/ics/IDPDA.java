@@ -21,26 +21,13 @@ public class IDPDA {
         this.input = input;
 
         for (int i = 0; i < input.length(); i++) {
+            //*****************************************************
+            prinfCurrentConfiguration(i);
+            //*****************************************************
             char c = input.charAt(i);
 
             Automaton automaton = getAutomatonById(state[0]);
             int[][] transitions = automaton.getTransitions();
-
-            boolean finalStateApplied = true;
-            while (finalStateApplied) {
-                if (transitions[state[1]][0] == Automaton.FINAL_STATE) {
-                    if (stack.isEmpty()) {
-                        break;
-                    }
-                    Integer[] stackValue = stack.pop();
-                    state[0] = stackValue[0];
-                    state[1] = stackValue[1];
-                    automaton = getAutomatonById(state[0]);
-                    transitions = automaton.getTransitions();
-                } else {
-                    finalStateApplied = false;
-                }
-            }
 
             boolean transitionApplied; // nonterminal transition
             while (true) {
@@ -52,12 +39,15 @@ public class IDPDA {
                         stackValue[0] = state[0];
                         stackValue[1] = transitions[state[1]][idx];
                         stack.push(stackValue);
-                        
+
                         state[0] = getIdOfAutomatonByNonterminal(automaton.getAlphabet().get(idx));
                         state[1] = 0;
+                        //*****************************************************
+                        prinfCurrentConfiguration(i);
+                        //*****************************************************
                         automaton = getAutomatonById(state[0]);
                         transitions = automaton.getTransitions();
-                        
+
                         transitionApplied = true;
                         break;
                     }
@@ -75,11 +65,33 @@ public class IDPDA {
                 int nextState = transitions[state[1]][idx];
                 if (nextState != Automaton.NO_VALUE) {
                     state[1] = nextState;
+                    //*****************************************************
+                    prinfCurrentConfiguration(i);
+                    //*****************************************************
                 } else {
                     return false;
                 }
             } else {
                 return false;
+            }
+
+            boolean finalStateApplied = true;
+            while (finalStateApplied) {
+                if (transitions[state[1]][0] == Automaton.FINAL_STATE) {
+                    if (stack.isEmpty()) {
+                        break;
+                    }
+                    Integer[] stackValue = stack.pop();
+                    state[0] = stackValue[0];
+                    state[1] = stackValue[1];
+                    //*****************************************************
+                    prinfCurrentConfiguration(i);
+                    //*****************************************************
+                    automaton = getAutomatonById(state[0]);
+                    transitions = automaton.getTransitions();
+                } else {
+                    finalStateApplied = false;
+                }
             }
         }
 
@@ -132,6 +144,18 @@ public class IDPDA {
             }
         }
         return -1;
+    }
+
+    public void prinfCurrentConfiguration(int i) {
+        if (!stack.isEmpty()) {
+            System.out.println("Configuration: " + getAutomatonById(state[0]).getOwnNonterminal()
+                    + state[1] + ", " + String.valueOf((input.charAt(i)) + ", ")
+                    + getAutomatonById(stack.peek()[0]).getOwnNonterminal() + stack.peek()[1]);
+        } else {
+            System.out.println("Configuration: " + getAutomatonById(state[0]).getOwnNonterminal()
+                    + state[1] + ", " + String.valueOf((input.charAt(i)) + ", ")
+                    + "Empty");
+        }
     }
 
     public String getInput() {

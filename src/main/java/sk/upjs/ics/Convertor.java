@@ -2,12 +2,13 @@ package sk.upjs.ics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Convertor {
     public Map<String, String> getMapOfRegExp(Grammar grammar) {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
 
         for (String c : grammar.getRules().keySet()) {
             List<String> list = grammar.getRules().get(c);
@@ -169,6 +170,9 @@ public class Convertor {
             id++;
             
             automata.add(automaton);
+        }
+        for (Automaton a : automata) {
+            System.out.println("CHAR: " + a.getOwnNonterminal());
         }
         
         return new IDPDA(automata);
