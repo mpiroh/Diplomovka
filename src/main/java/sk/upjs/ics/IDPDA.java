@@ -93,6 +93,13 @@ public class IDPDA {
                     finalStateApplied = false;
                 }
             }
+            
+            // ak sme v koncovom stave ale este nie je docitany vstup, neakceptujeme
+            if (transitions[state[1]][0] == Automaton.FINAL_STATE
+                    && automaton.getId() == 0
+                    && i < input.length() - 1) {
+                return false;
+            }
         }
 
         Automaton automaton = getAutomatonById(state[0]);

@@ -53,12 +53,14 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         addRuleButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
+        deleteRuleButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         rulesList = new javax.swing.JList();
-        setStartButton = new javax.swing.JButton();
-        toAutomatonButton1 = new javax.swing.JButton();
-        toRegExpButton = new javax.swing.JButton();
+        toIDPDAButton = new javax.swing.JButton();
+        selectFileButton = new javax.swing.JButton();
+        simulateButton = new javax.swing.JButton();
+        fileNameLabel = new javax.swing.JLabel();
+        toDFAButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,33 +71,27 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        deleteButton.setText("Delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteRuleButton.setText("Delete rule");
+        deleteRuleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
+                deleteRuleButtonActionPerformed(evt);
             }
         });
 
         jScrollPane1.setViewportView(rulesList);
 
-        setStartButton.setText("Set start symbol");
-        setStartButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setStartButtonActionPerformed(evt);
-            }
-        });
+        toIDPDAButton.setText("To IDPDA");
 
-        toAutomatonButton1.setText("To DFA");
-        toAutomatonButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toAutomatonButton1ActionPerformed(evt);
-            }
-        });
+        selectFileButton.setText("Select file");
 
-        toRegExpButton.setText("To RexExp");
-        toRegExpButton.addActionListener(new java.awt.event.ActionListener() {
+        simulateButton.setText("Simulate");
+
+        fileNameLabel.setText("...");
+
+        toDFAButton.setText("To DFA");
+        toDFAButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toRegExpButtonActionPerformed(evt);
+                toDFAButtonActionPerformed(evt);
             }
         });
 
@@ -108,15 +104,21 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(addRuleButton, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(toRegExpButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(setStartButton, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(toAutomatonButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selectFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(simulateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fileNameLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addRuleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteRuleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(toDFAButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(toIDPDAButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -124,16 +126,20 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addRuleButton)
-                    .addComponent(setStartButton)
-                    .addComponent(deleteButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(toAutomatonButton1)
-                    .addComponent(toRegExpButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(selectFileButton)
+                            .addComponent(simulateButton)
+                            .addComponent(fileNameLabel))
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addRuleButton)
+                        .addComponent(deleteRuleButton)
+                        .addComponent(toDFAButton)
+                        .addComponent(toIDPDAButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,14 +181,7 @@ public class GUI extends javax.swing.JFrame {
         refresh();
     }//GEN-LAST:event_addRuleButtonActionPerformed
 
-    private void setStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setStartButtonActionPerformed
-        SetStartDialog startFrame = new SetStartDialog(this, true, grammar);
-        startFrame.setVisible(true);
-        rulesList.clearSelection();
-        refresh();
-    }//GEN-LAST:event_setStartButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+    private void deleteRuleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRuleButtonActionPerformed
         String s = (String) rulesList.getSelectedValue();
         char c = s.charAt(0);
         List<String> list = grammar.getRules().get(c);
@@ -191,16 +190,24 @@ public class GUI extends javax.swing.JFrame {
         list.remove(ss);
         
         refresh();
-    }//GEN-LAST:event_deleteButtonActionPerformed
+    }//GEN-LAST:event_deleteRuleButtonActionPerformed
 
-    private void toAutomatonButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toAutomatonButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_toAutomatonButton1ActionPerformed
-
-    private void toRegExpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toRegExpButtonActionPerformed
+    private void toDFAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toDFAButtonActionPerformed
         Convertor convertor = new Convertor();
-        System.out.println(convertor.getMapOfRegExp(grammar));
-    }//GEN-LAST:event_toRegExpButtonActionPerformed
+        List<Automaton> automata = convertor.toAutomata(grammar);
+        
+        StringBuilder sb = new StringBuilder();
+        for (Automaton a : automata) {
+            sb.append("Automaton " + a.getOwnNonterminal());
+            sb.append("\n");
+            sb.append(a.toStringHtml());
+            sb.append("--------------------------------------");
+            sb.append("\n");
+        }
+        
+        DisplayDialog displayDialog = new DisplayDialog(this, true, sb.toString());
+        displayDialog.setVisible(true);
+    }//GEN-LAST:event_toDFAButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,11 +246,13 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addRuleButton;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteRuleButton;
+    private javax.swing.JLabel fileNameLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList rulesList;
-    private javax.swing.JButton setStartButton;
-    private javax.swing.JButton toAutomatonButton1;
-    private javax.swing.JButton toRegExpButton;
+    private javax.swing.JButton selectFileButton;
+    private javax.swing.JButton simulateButton;
+    private javax.swing.JButton toDFAButton;
+    private javax.swing.JButton toIDPDAButton;
     // End of variables declaration//GEN-END:variables
 }

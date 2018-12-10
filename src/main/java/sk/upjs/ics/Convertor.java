@@ -157,6 +157,24 @@ public class Convertor {
         return -1;
     }
     
+    public List<Automaton> toAutomata(Grammar grammar) {
+        Map<String, String> regExpMap = getMapOfRegExp(grammar);
+        
+        List<Automaton> automata = new ArrayList<>();
+        int id = 0;
+        for (String s : regExpMap.keySet()) {
+            String regExp = regExpMap.get(s);
+            Automaton automaton = toAutomaton(regExp);
+            automaton.setOwnNonterminal(s);
+            automaton.setId(id);
+            id++;
+            
+            automata.add(automaton);
+        }
+        
+        return automata;
+    }
+    
     public IDPDA toIDPDA(Grammar grammar) {
         Map<String, String> regExpMap = getMapOfRegExp(grammar);
         

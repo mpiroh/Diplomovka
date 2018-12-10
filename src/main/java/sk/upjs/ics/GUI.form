@@ -27,18 +27,25 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="addRuleButton" pref="113" max="32767" attributes="0"/>
-                          <Component id="toRegExpButton" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="selectFileButton" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="simulateButton" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fileNameLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="addRuleButton" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="deleteRuleButton" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="toDFAButton" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="toIDPDAButton" min="-2" pref="113" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="setStartButton" pref="113" max="32767" attributes="0"/>
-                          <Component id="toAutomatonButton1" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="deleteButton" min="-2" pref="113" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -50,17 +57,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="217" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="addRuleButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="setStartButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="deleteButton" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="toAutomatonButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="toRegExpButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="217" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="selectFileButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="simulateButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fileNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="addRuleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRuleButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="toDFAButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="toIDPDAButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -76,12 +89,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addRuleButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="deleteButton">
+    <Component class="javax.swing.JButton" name="deleteRuleButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="text" type="java.lang.String" value="Delete rule"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteRuleButtonActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -97,28 +110,32 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="setStartButton">
+    <Component class="javax.swing.JButton" name="toIDPDAButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Set start symbol"/>
+        <Property name="text" type="java.lang.String" value="To IDPDA"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setStartButtonActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="toAutomatonButton1">
+    <Component class="javax.swing.JButton" name="selectFileButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select file"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="simulateButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Simulate"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fileNameLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="toDFAButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="To DFA"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toAutomatonButton1ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="toRegExpButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="To RexExp"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toRegExpButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="toDFAButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
